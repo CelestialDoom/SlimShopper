@@ -1,0 +1,79 @@
+﻿<Page
+    x:Class="SlimShopper.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:SlimShopper"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Page.Resources>
+        <Storyboard x:Name="iconRotation" AutoReverse="False" RepeatBehavior="Forever">
+            <DoubleAnimation Duration="0:0:1" To="360" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.Rotation)" Storyboard.TargetName="refreshIcon" />
+        </Storyboard>
+    </Page.Resources>
+
+    <Grid>
+        <WebView x:Name="SSWV" Margin="0,0,0,48" />
+        <Grid x:Name="_G_COUNTRY" Margin="20,20,20,68" Background="#FFFF9900" BorderBrush="Black" BorderThickness="2,2,2,2" Visibility="Collapsed">
+            <Button x:Name="_CCLOSE" Content="&#xE10A;" FontSize="36" Grid.Column="2" Background="{x:Null}" BorderBrush="Black" BorderThickness="0,0,0,0" HorizontalAlignment="Right" VerticalAlignment="Top" Foreground="Black" FontFamily="Segoe MDL2 Assets" Padding="0,0,0,0" Canvas.ZIndex="0" Margin="0,10,10,0" />
+            <ListBox x:Name="lstCountry" Margin="20,60,20,20" Background="#FFFF9900" />
+        </Grid>
+        <Grid x:Name="_G_ABOUT" Margin="20,20,20,68" Background="#FFFF9900" BorderBrush="Black" BorderThickness="2,2,2,2" Visibility="Collapsed">
+            <Button x:Name="_ACLOSE" Content="&#xE10A;" FontSize="36" Grid.Column="2" Background="{x:Null}" BorderBrush="Black" BorderThickness="0,0,0,0" HorizontalAlignment="Right" VerticalAlignment="Top" Foreground="Black" FontFamily="Segoe MDL2 Assets" Padding="0,0,0,0" Canvas.ZIndex="0" Margin="0,10,10,0" />
+            <Pivot x:Name="PivotSettingsAbout" Foreground="White" Background="#FFFF9900" Margin="2,39,2,2">
+                <PivotItem x:Name="_PivotAbout" Header="About" Foreground="White">
+                    <StackPanel>
+                        <Image Height="100" HorizontalAlignment="Left" Source="Assets/Square44x44Logo.targetsize-256.png" />
+                        <TextBlock x:Name="AN" FontSize="20" TextWrapping="Wrap" Text="SlimShopper" Foreground="Black" />
+                        <TextBlock  Name="version" Text="version" Foreground="Black" />
+                        <ScrollViewer x:Name="ScrollViewAbout" IsTabStop="True" VerticalScrollBarVisibility="Auto" Margin="0,5,0,0" BorderBrush="#FFA0A0A0" Height="220">
+                            <TextBlock x:Name="abouttext" TextWrapping="Wrap" Text="privacy" Foreground="Black" />
+                        </ScrollViewer>
+                    </StackPanel>
+                </PivotItem>
+                <PivotItem x:Name="_PivotCredits" Header="Credits" Foreground="White">
+                    <StackPanel>
+                        <TextBlock x:Name="developers" Text="Developers" FontSize="24" Foreground="Black" />
+                        <HyperlinkButton x:Name="hyperDev" Content="Celestial Doom" HorizontalAlignment="Left" VerticalAlignment="Stretch" FontSize="22" Visibility="Visible" Foreground="Black" FontWeight="Bold" />
+                        <Grid Height="50" />
+                        <Image Height="100" HorizontalAlignment="Left" Source="Assets/Square44x44Logo.targetsize-256.png" />
+                        <TextBlock Text="App Logo" TextWrapping="Wrap" FontSize="24" Foreground="Black" />
+                        <HyperlinkButton x:Name="hyperLogo" Content="Icon Archive" HorizontalAlignment="Left" VerticalAlignment="Stretch" FontSize="22" Foreground="Black" FontWeight="Bold" />
+                        <TextBlock Text="Donations" TextWrapping="Wrap" FontSize="24" Visibility="Collapsed" />
+                        <Button Content="Donations" HorizontalAlignment="Left" VerticalAlignment="Stretch" FontSize="22" Foreground="White" Visibility="Collapsed" />
+                    </StackPanel>
+                </PivotItem>
+                <PivotItem x:Name="_PivotPrivacy" Header="Privacy" Foreground="White">
+                    <ScrollViewer x:Name="ScrollViewPrivacy" IsTabStop="True" VerticalScrollBarVisibility="Auto" Margin="0,5,0,5" BorderBrush="#FFA0A0A0">
+                        <Grid>
+                            <TextBlock x:Name="privacy" TextWrapping="Wrap" Text="privacy" FontSize="16" Foreground="Black" />
+                        </Grid>
+                    </ScrollViewer>
+                </PivotItem>
+            </Pivot>
+        </Grid>
+        <CommandBar x:Name="CB" Background="#FFFF9900" VerticalAlignment="Bottom" BorderBrush="White" Foreground="Black">
+            <AppBarButton x:Name="BACK" Icon="Back" Label="Back" Foreground="Black" />
+            <AppBarButton x:Name="TOP" Icon="Upload" Label="Top" Foreground="Black" />
+            <AppBarButton x:Uid="refreshButton" x:Name="REFRESH" RenderTransformOrigin="0.5,0.5" Label="Refresh"
+                          Foreground="Black">
+                <AppBarButton.Icon>
+                    <SymbolIcon x:Name="refreshIcon"  Symbol="Refresh" RenderTransformOrigin="0.5,0.5">
+                        <SymbolIcon.RenderTransform>
+                            <CompositeTransform />
+                        </SymbolIcon.RenderTransform>
+                    </SymbolIcon>
+                </AppBarButton.Icon>
+            </AppBarButton>
+            <AppBarButton x:Name="HOME" Icon="Home" Label="Home" Foreground="Black" />
+            <CommandBar.SecondaryCommands>
+                <AppBarButton x:Name="ACCOUNT" Icon="Account" Label="My Account" />
+                <AppBarButton x:Name="ORDERS" Icon="Shop" Label="My Orders" />
+                <AppBarButton x:Name="ABOUT" Icon="Help" Label="About" />
+                <AppBarButton x:Name="QUIT" Icon="Back" Label="Exit" />
+            </CommandBar.SecondaryCommands>
+        </CommandBar>
+    </Grid>
+</Page>
