@@ -1,14 +1,14 @@
-![SlimShopper UWP Beta Logo](https://s19.postimg.cc/9l5okp6ir/Tu_Aa_Icon_inv.png)
+![SlimShopper Logo](https://s19.postimg.cc/9l5okp6ir/Tu_Aa_Icon_inv.png)
 # SlimShopper
 [![GPL Licence](https://badges.frapsoft.com/os/gpl/gpl.png?v=103)](https://opensource.org/licenses/GPL-3.0/)
 [![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.png?v=103)](https://github.com/ellerbrock/open-source-badges/)
-[![HitCount](http://hits.dwyl.io/CelestialDoom/SlimShopper-UWP-Beta.svg)](http://hits.dwyl.io/CelestialDoom/SlimShopper-UWP-Beta)
-[![GitHub contributors](https://img.shields.io/github/contributors/CelestialDoom/SlimSHopper-UWP-Beta.svg)](https://github.com/CelestialDoom/SlimShopper-UWP-Beta/graphs/contributors)
+[![HitCount](http://hits.dwyl.io/CelestialDoom/SlimShopper-UWP-Beta.svg)](http://hits.dwyl.io/CelestialDoom/SlimShopper)
+[![GitHub contributors](https://img.shields.io/github/contributors/CelestialDoom/SlimSHopper.svg)](https://github.com/CelestialDoom/SlimShopper/graphs/contributors)
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/CelestialDoom/SlimShopper-UWP-Beta/issues)
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/c2aa658574b9467e911ef9e84f3e4a36)](https://www.codacy.com/app/CelestialDoom/SlimBook-UWP-Beta?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=CelestialDoom/SlimBook-UWP-Beta&amp;utm_campaign=Badge_Grade)
 
-SlimShopper UWP Beta an Unofficial app to access the Amazon shopping site.
+SlimShopper Unofficial app to access the Amazon shopping site.
 
 ***
 
