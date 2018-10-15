@@ -48,11 +48,43 @@
                 <PivotItem x:Name="_PivotPrivacy" Header="Privacy" Foreground="White">
                     <ScrollViewer x:Name="ScrollViewPrivacy" IsTabStop="True" VerticalScrollBarVisibility="Auto" Margin="0,5,0,5" BorderBrush="#FFA0A0A0">
                         <Grid>
-                            <TextBlock x:Name="privacy" TextWrapping="Wrap" Text="privacy" FontSize="16" Foreground="Black" />
+                            <TextBlock x:Name="privacy" TextWrapping="Wrap" Text="privacy" FontSize="16" 
+                            Foreground="Black" />
+                            <HyperlinkButton x:Name="PrivacyURL" Content="Privacy Policy" HorizontalAlignment="Left" VerticalAlignment="Stretch" FontSize="16" Visibility="Visible" Foreground="Black" FontWeight="Bold" />
                         </Grid>
                     </ScrollViewer>
                 </PivotItem>
             </Pivot>
+        </Grid>
+        <Button x:Name="_MENU" Content="&#xE700;" FontSize="24" Grid.Column="2" Background="{x:Null}" BorderBrush="Black" BorderThickness="0,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Bottom" Foreground="Black" FontFamily="Segoe MDL2 Assets" Padding="0,0,0,0" Canvas.ZIndex="1" Margin="12,0,0,12" FontWeight="Bold" />
+        <Grid x:Name="SB" HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="0,0,0,48" Width="250" Background="#FFFF9900" BorderBrush="Black" BorderThickness="0,0,2,1" Visibility="Visible">
+            <StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/Assets/SmallTile.png" />
+                    <TextBlock Text="SlimShopper" FontSize="24" VerticalAlignment="Center"/>
+                </StackPanel>
+                <StackPanel Height="25"/>
+                <StackPanel Orientation="Horizontal">
+                    <Button x:Name="_COUNTRY" Content="&#xE774;" FontSize="24" Grid.Column="2" Background="{x:Null}" BorderBrush="{x:Null}" BorderThickness="0,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Segoe MDL2 Assets" Padding="0,0,0,0" Canvas.ZIndex="1" FontWeight="Bold" Width="48" Height="48" />
+                    <TextBlock x:Name="txtC_CHOICE" Text="Country Choice" FontSize="24" VerticalAlignment="Center"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Button x:Name="_MYACCOUNT" Content="&#xE77B;" FontSize="24" Grid.Column="2" Background="{x:Null}" BorderBrush="{x:Null}" BorderThickness="0,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Segoe MDL2 Assets" Padding="0,0,0,0" Canvas.ZIndex="1" FontWeight="Bold" Width="48" Height="48" />
+                    <TextBlock x:Name="txtMy_Account" Text="My Account" FontSize="24" VerticalAlignment="Center"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Button x:Name="_MYORDERS" Content="&#xE719;" FontSize="24" Grid.Column="2" Background="{x:Null}" BorderBrush="{x:Null}" BorderThickness="0,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Segoe MDL2 Assets" Padding="0,0,0,0" Canvas.ZIndex="1" FontWeight="Bold" Width="48" Height="48" />
+                    <TextBlock x:Name="txtMy_Orders" Text="My Orders" FontSize="24" VerticalAlignment="Center"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Button x:Name="_ABOUTAPP" Content="&#xE897;" FontSize="24" Grid.Column="2" Background="{x:Null}" BorderBrush="{x:Null}" BorderThickness="0,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Segoe MDL2 Assets" Padding="0,0,0,0" Canvas.ZIndex="1" FontWeight="Bold" Width="48" Height="48" />
+                    <TextBlock x:Name="txtAboutApp" Text="About App" FontSize="24" VerticalAlignment="Center"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Button x:Name="_QUITAPP" Content="&#xE7E8;" FontSize="24" Grid.Column="2" Background="{x:Null}" BorderBrush="{x:Null}" BorderThickness="0,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Segoe MDL2 Assets" Padding="0,0,0,0" Canvas.ZIndex="1" FontWeight="Bold" Width="48" Height="48" />
+                    <TextBlock x:Name="txtQuitApp" Text="Quit App" FontSize="24" VerticalAlignment="Center"/>
+                </StackPanel>
+            </StackPanel>
         </Grid>
         <CommandBar x:Name="CB" Background="#FFFF9900" VerticalAlignment="Bottom" BorderBrush="White" Foreground="Black">
             <AppBarButton x:Name="BACK" Icon="Back" Label="Back" Foreground="Black" />
@@ -68,12 +100,6 @@
                 </AppBarButton.Icon>
             </AppBarButton>
             <AppBarButton x:Name="HOME" Icon="Home" Label="Home" Foreground="Black" />
-            <CommandBar.SecondaryCommands>
-                <AppBarButton x:Name="ACCOUNT" Icon="Account" Label="My Account" />
-                <AppBarButton x:Name="ORDERS" Icon="Shop" Label="My Orders" />
-                <AppBarButton x:Name="ABOUT" Icon="Help" Label="About" />
-                <AppBarButton x:Name="QUIT" Icon="Back" Label="Exit" />
-            </CommandBar.SecondaryCommands>
         </CommandBar>
     </Grid>
 </Page>

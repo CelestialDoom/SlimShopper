@@ -47,37 +47,10 @@ Public NotInheritable Class MainPage
     End Sub
 
     ''' <summary>
-    ''' Handles the Click event of the ABOUT control.
-    ''' </summary>
-    ''' <param name="sender">The source of the event.</param>
-    ''' <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
-    Private Sub ABOUT_Click(sender As Object, e As RoutedEventArgs) Handles ABOUT.Click
-        PivotSettingsAbout.SelectedIndex = 0
-        Dim number As PackageVersion = Package.Current.Id.Version
-        version.Text = String.Format(" {0}.{1}.{2}" & vbCrLf, number.Major, number.Minor, number.Build)
-        abouttext.Text = AboutInfo
-        privacy.Text = PrivacyInfo
-        ScrollViewAbout.ChangeView(Nothing, 0, Nothing, True)
-        ScrollViewPrivacy.ChangeView(Nothing, 0, Nothing, True)
-        _G_ABOUT.Visibility = Visibility.Visible
-    End Sub
-
-    ''' <summary>
-    ''' Handles the Click event of the ACCOUNT control.
-    ''' </summary>
-    ''' <param name="sender">The source of the event.</param>
-    ''' <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
-    Private Sub ACCOUNT_Click(sender As Object, e As RoutedEventArgs) Handles ACCOUNT.Click
-        Dim selectedValue As Integer
-        selectedValue = localSettings.Values("STORED_COUNTRY")
-        SSWV.Source = New Uri("https://www.amazon." & CountryURL(selectedValue) & "/gp/css/homepage.html/ref=nav_youraccount_ya")
-    End Sub
-
-    ''' <summary>
     ''' Handles the Click event of the BACK control.
     ''' </summary>
     ''' <param name="sender">The source of the event.</param>
-    ''' <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
+    ''' <param name="e">The <see cref="RoutedEventArgs" /> instance containing the event data.</param>
     Private Async Sub BACK_Click(sender As Object, e As RoutedEventArgs) Handles BACK.Click
         If SSWV.CanGoBack Then
             SSWV.GoBack()
@@ -104,6 +77,7 @@ Public NotInheritable Class MainPage
     ''' <param name="sender">The source of the event.</param>
     ''' <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
     Private Async Sub hyperDev_Click(sender As Object, e As RoutedEventArgs) Handles hyperDev.Click
+        _G_ABOUT.Visibility = Visibility.Collapsed
         Dim DevURL = New Uri("https://github.com/CelestialDoom/")
         Await Windows.System.Launcher.LaunchUriAsync(DevURL)
     End Sub
@@ -114,6 +88,7 @@ Public NotInheritable Class MainPage
     ''' <param name="sender">The source of the event.</param>
     ''' <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
     Private Async Sub hyperLogo_Click(sender As Object, e As RoutedEventArgs) Handles hyperLogo.Click
+        _G_ABOUT.Visibility = Visibility.Collapsed
         Dim logoURL = New Uri("http://www.iconarchive.com/show/ios7-icons-by-icons8/Ecommerce-Shopping-Cart-Empty-icon.html")
         Await Windows.System.Launcher.LaunchUriAsync(logoURL)
     End Sub
@@ -142,6 +117,8 @@ Public NotInheritable Class MainPage
     ''' <param name="sender">The source of the event.</param>
     ''' <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
     Private Sub MainPage_Loaded(sender As Object, e As RoutedEventArgs) Handles Me.Loaded
+        IsSideBarOpen = False
+        SB.Visibility = Visibility.Collapsed
         lstCountry.ItemsSource = LoadCountries()
         _G_COUNTRY.Visibility = Visibility.Collapsed
         AddHandler HardwareButtons.BackPressed, AddressOf BackPressed
@@ -157,24 +134,10 @@ Public NotInheritable Class MainPage
         SSWV.Source = New Uri("https://www.amazon." & CountryURL(value) & "/")
     End Sub
 
-    ''' <summary>
-    ''' Handles the Click event of the ORDERS control.
-    ''' </summary>
-    ''' <param name="sender">The source of the event.</param>
-    ''' <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
-    Private Sub ORDERS_Click(sender As Object, e As RoutedEventArgs) Handles ORDERS.Click
-        Dim selectedValue As Integer
-        selectedValue = localSettings.Values("STORED_COUNTRY")
-        SSWV.Source = New Uri("https://www.amazon." & CountryURL(selectedValue) & "/gp/css/order-history/ref=nav_youraccount_order")
-    End Sub
-
-    ''' <summary>
-    ''' Handles the Click event of the QUIT control.
-    ''' </summary>
-    ''' <param name="sender">The source of the event.</param>
-    ''' <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
-    Private Sub QUIT_Click(sender As Object, e As RoutedEventArgs) Handles QUIT.Click
-        Application.Current.Exit()
+    Private Async Sub PrivacyURL_Click(sender As Object, e As RoutedEventArgs) Handles PrivacyURL.Click
+        _G_ABOUT.Visibility = Visibility.Collapsed
+        Dim logoURL = New Uri("https://github.com/CelestialDoom/SlimShopper/blob/master/Privacy-Policy.md")
+        Await Windows.System.Launcher.LaunchUriAsync(logoURL)
     End Sub
 
     ''' <summary>
@@ -194,6 +157,93 @@ Public NotInheritable Class MainPage
     Private Async Sub TOP_Click(sender As Object, e As RoutedEventArgs) Handles TOP.Click
         Dim ScrollToTopString = "var int = setInterval(function(){window.scrollBy(0, -36); if( window.pageYOffset === 0 ) clearInterval(int); }, 0.0);"
         Await SSWV.InvokeScriptAsync("eval", New String() {ScrollToTopString})
+    End Sub
+
+    Private Sub _MENU_Click(sender As Object, e As RoutedEventArgs) Handles _MENU.Click
+        If IsSideBarOpen Then
+            IsSideBarOpen = False
+            SB.Visibility = Visibility.Collapsed
+        Else
+            IsSideBarOpen = True
+            SB.Visibility = Visibility.Visible
+        End If
+    End Sub
+
+    Private Sub CloseSB()
+        SB.Visibility = Visibility.Collapsed
+        IsSideBarOpen = False
+    End Sub
+
+    Private Sub _COUNTRY_Click(sender As Object, e As RoutedEventArgs) Handles _COUNTRY.Click
+        CloseSB()
+        _G_COUNTRY.Visibility = Visibility.Visible
+    End Sub
+
+    Private Sub _MYACCOUNT_Click(sender As Object, e As RoutedEventArgs) Handles _MYACCOUNT.Click
+        CloseSB()
+        Dim selectedValue As Integer
+        selectedValue = localSettings.Values("STORED_COUNTRY")
+        SSWV.Source = New Uri("https://www.amazon." & CountryURL(selectedValue) & "/gp/css/homepage.html/ref=nav_youraccount_ya")
+    End Sub
+
+    Private Sub _MYORDERS_Click(sender As Object, e As RoutedEventArgs) Handles _MYORDERS.Click
+        CloseSB()
+        Dim selectedValue As Integer
+        selectedValue = localSettings.Values("STORED_COUNTRY")
+        SSWV.Source = New Uri("https://www.amazon." & CountryURL(selectedValue) & "/gp/css/order-history/ref=nav_youraccount_order")
+    End Sub
+
+    Private Sub _ABOUTAPP_Click(sender As Object, e As RoutedEventArgs) Handles _ABOUTAPP.Click
+        CloseSB()
+        PivotSettingsAbout.SelectedIndex = 0
+        Dim number As PackageVersion = Package.Current.Id.Version
+        version.Text = String.Format(" {0}.{1}.{2}" & vbCrLf, number.Major, number.Minor, number.Build)
+        abouttext.Text = AboutInfo
+        privacy.Text = PrivacyInfo
+        ScrollViewAbout.ChangeView(Nothing, 0, Nothing, True)
+        ScrollViewPrivacy.ChangeView(Nothing, 0, Nothing, True)
+        _G_ABOUT.Visibility = Visibility.Visible
+    End Sub
+
+    Private Sub _QUITAPP_Click(sender As Object, e As RoutedEventArgs) Handles _QUITAPP.Click
+        CloseSB()
+        Application.Current.Exit()
+    End Sub
+
+    Private Sub txtC_CHOICE_Tapped(sender As Object, e As TappedRoutedEventArgs) Handles txtC_CHOICE.Tapped
+        CloseSB()
+        _G_COUNTRY.Visibility = Visibility.Visible
+    End Sub
+
+    Private Sub txtMy_Account_Tapped(sender As Object, e As TappedRoutedEventArgs) Handles txtMy_Account.Tapped
+        CloseSB()
+        Dim selectedValue As Integer
+        selectedValue = localSettings.Values("STORED_COUNTRY")
+        SSWV.Source = New Uri("https://www.amazon." & CountryURL(selectedValue) & "/gp/css/homepage.html/ref=nav_youraccount_ya")
+    End Sub
+
+    Private Sub txtMy_Orders_Tapped(sender As Object, e As TappedRoutedEventArgs) Handles txtMy_Orders.Tapped
+        CloseSB()
+        Dim selectedValue As Integer
+        selectedValue = localSettings.Values("STORED_COUNTRY")
+        SSWV.Source = New Uri("https://www.amazon." & CountryURL(selectedValue) & "/gp/css/order-history/ref=nav_youraccount_order")
+    End Sub
+
+    Private Sub txtAboutApp_Tapped(sender As Object, e As TappedRoutedEventArgs) Handles txtAboutApp.Tapped
+        CloseSB()
+        PivotSettingsAbout.SelectedIndex = 0
+        Dim number As PackageVersion = Package.Current.Id.Version
+        version.Text = String.Format(" {0}.{1}.{2}" & vbCrLf, number.Major, number.Minor, number.Build)
+        abouttext.Text = AboutInfo
+        privacy.Text = PrivacyInfo
+        ScrollViewAbout.ChangeView(Nothing, 0, Nothing, True)
+        ScrollViewPrivacy.ChangeView(Nothing, 0, Nothing, True)
+        _G_ABOUT.Visibility = Visibility.Visible
+    End Sub
+
+    Private Sub txtQuitApp_Tapped(sender As Object, e As TappedRoutedEventArgs) Handles txtQuitApp.Tapped
+        CloseSB()
+        Application.Current.Exit()
     End Sub
 
 End Class

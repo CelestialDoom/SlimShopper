@@ -23,6 +23,7 @@ Module Vars
     Public StoredCountry As String
     Public URLBuilder As String
     Public view = ApplicationView.GetForCurrentView()
+    Public IsSideBarOpen As Boolean = False
 
     'LoadCountries loads the list of countries into the lstCountry listbox.
     Public Function LoadCountries()
